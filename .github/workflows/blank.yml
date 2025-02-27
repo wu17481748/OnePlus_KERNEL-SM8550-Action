@@ -43,8 +43,7 @@ jobs:
           echo "Cloning AnyKernel3 and other dependencies..."
     
           # Define the branch names using the matrix values
-          ANYKERNEL_BRANCH="android12-5.10"
-          SUSFS_BRANCH="gki-android12-5.10"
+          ANYKERNEL_BRANCH="gki-2.0"
 
           # Debug print the branches
           echo "Using branch for AnyKernel3: $ANYKERNEL_BRANCH"
