@@ -59,7 +59,7 @@ jobs:
           
           # Initialize and sync kernel source
           echo "Initializing and syncing kernel source..."
-          $REPO init -u https://github.com/OnePlusOSS/kernel_manifest.git -m oneplus_ace2pro_v.xml --repo-rev=v2.16 --depth=1
+          $REPO init -u https://github.com/OnePlusOSS/kernel_manifest.git -m oneplus_ace2pro_v.xml -b oneplus/sm8550 --depth=1
           
           # Sync repo and apply patches
           $REPO --version
