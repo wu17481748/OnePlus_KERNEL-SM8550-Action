@@ -23,7 +23,7 @@ jobs:
       - name: Set CONFIG Environment Variable
         run: |
           # Set CONFIG dynamically based on matrix values
-          CONFIG="opace2"
+          CONFIG="opace2pro"
           
           # Set CONFIG as an environment variable for future steps
           echo "CONFIG=$CONFIG" >> $GITHUB_ENV
@@ -82,7 +82,7 @@ jobs:
           perl -pi -e 's{UTS_VERSION="\$\(echo \$UTS_VERSION \$CONFIG_FLAGS \$TIMESTAMP \| cut -b -\$UTS_LEN\)"}{UTS_VERSION="#1 SMP PREEMPT Sat Apr 20 04:20:00 UTC 2024"}' ./common/scripts/mkcompile_h
 
           #Open KVM
-          sed -i 's/kvm-arm.mode=protected/kvm-arm.mode=nvhe/' arch/arm64/cinfigs/gki_defconfig
+          sed -i 's/kvm-arm.mode=protected/kvm-arm.mode=nvhe/' ./common/arch/arm64/configs/gki_defconfig
 
       - name: Build the Kernel
         run: |
