@@ -81,6 +81,8 @@ jobs:
           # Run perl command to modify UTS_VERSION
           perl -pi -e 's{UTS_VERSION="\$\(echo \$UTS_VERSION \$CONFIG_FLAGS \$TIMESTAMP \| cut -b -\$UTS_LEN\)"}{UTS_VERSION="#1 SMP PREEMPT Sat Apr 20 04:20:00 UTC 2024"}' ./common/scripts/mkcompile_h
 
+          #Open KVM
+          sed -i 's/kvm-arm.mode=protected/kvm-arm.mode=nvhe/' arch/arm64/cinfigs/gki_defconfig
 
       - name: Build the Kernel
         run: |
