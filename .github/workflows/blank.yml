@@ -84,6 +84,10 @@ jobs:
           #Open KVM
           sed -i 's/kvm-arm.mode=protected/kvm-arm.mode=nvhe/' ./common/arch/arm64/configs/gki_defconfig
 
+          #Close SIG
+          sed -i '/CONFIG_MODULE_SIG=y/d' ./common/arch/arm64/configs/gki_defconfig
+
+
       - name: Build the Kernel
         run: |
           echo "Changing to configuration directory: $CONFIG..."
