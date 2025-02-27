@@ -66,6 +66,35 @@ jobs:
           $REPO --trace sync -c -j$(nproc --all) --no-tags --fail-fast
 
 
+      - name: Build the Kernel
+        run: |
+          echo "Changing to configuration directory: $CONFIG..."
+          cd "$CONFIG"
           
+          echo "Building the kernel..."
+          rm -rf ./kernel_platform/common/android/abi_gki_protected_exports_*
+          ./kernel_platform/oplus/build/oplus_build_kernel.sh kalama gki
 
-    
+      - name: Create Bootimgs Folder and Copy Images
+        run: |
+          echo "Changing to configuration directory: $CONFIG..."
+          cd "$CONFIG"
+          
+          echo "Copying Image"
+          cp ./out/dist/Image ../AnyKernel3/Image
+          
+      - name: Create ZIP Files for Different Formats
+        run: |
+          echo "Creating zip files for all formats..."
+          cd ./AnyKernel3
+          
+          ZIP_NAME="Anykernel3-OPAce2-A15-android12-5.10-KernelSU-SUSFS.zip"
+          echo "Creating zip file $ZIP_NAME..."
+          zip -r "../$ZIP_NAME" ./*
+          
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-${{ env.CONFIG }}
+          path: |
+            *.zip
