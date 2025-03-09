@@ -91,7 +91,7 @@ jobs:
         uses: actions/upload-artifact@v4.0.0
         with:
           name: derive-gpu
-          path: $CONFIG/kernel_platform/common/derives/gpu
+          path: $CONFIG/kernel_platform/common/drivers/gpu
           
 
       - name: Build the Kernel
