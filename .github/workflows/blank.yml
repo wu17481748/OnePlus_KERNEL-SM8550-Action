@@ -86,12 +86,14 @@ jobs:
 
           #Close SIG
           #sed -i '/CONFIG_MODULE_SIG=y/d' ./common/arch/arm64/configs/gki_defconfig
+
+          ls $CONFIG/kernel_platform/common/drivers
       
       - name: Upload derive
         uses: actions/upload-artifact@v4.0.0
         with:
           name: derive-gpu
-          path: $CONFIG/kernel_platform/common/drivers/gpu
+          path: $CONFIG/kernel_platform/common/drivers/gpu/*
           
 
       - name: Build the Kernel
